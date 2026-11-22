@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Vaultbreak — The Midnight Heist</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="stage">
+  <div id="hud">
+    <div class="hud-left">
+      <span id="hud-level">LEVEL 1 · THE GALLERY</span>
+      <span id="hud-loot">LOOT 0/5</span>
+      <span id="hud-score">SCORE 0</span>
+    </div>
+    <div class="hud-mid">
+      <span class="hud-label">ALARM</span>
+      <div id="alarm-bar"><div id="alarm-fill"></div></div>
+    </div>
+    <div class="hud-right">
+      <span id="hud-time">00:00</span>
+      <span id="hud-keycard" class="hidden">KEYCARD</span>
+      <button id="btn-mute" title="Mute (M)">SOUND ON</button>
+      <button id="btn-pause" title="Pause (P)">PAUSE</button>
+    </div>
+  </div>
+  <canvas id="game" width="960" height="600"></canvas>
+  <div id="overlay">
+    <div id="overlay-card">
+      <h1 id="ov-title">VAULTBREAK</h1>
+      <p id="ov-sub">The Midnight Heist</p>
+      <div id="ov-body"></div>
+      <div id="ov-buttons"></div>
+      <p id="ov-hint"></p>
+    </div>
+  </div>
+  <div id="toast"></div>
+</div>
+<script src="game.js"></script>
+</body>
+</html>
