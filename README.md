@@ -1,36 +1,58 @@
-# best-heist-game-20261122-0559
+# Velvet Vault
 
 [![make.fun · best-heist-game-20261122-0559](https://make.fun/badge/best-heist-game-20261122-0559.svg)](https://make.fun/bounty/best-heist-game-20261122-0559?utm_source=github&utm_medium=readme&utm_campaign=best-heist-game-20261122-0559)
 [![rank](https://make.fun/badge/best-heist-game-20261122-0559/miuoas47-gif/best-heist-game-20261122-0559/rank.svg)](https://make.fun/bounty/best-heist-game-20261122-0559/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=best-heist-game-20261122-0559)
 [![reward](https://make.fun/badge/best-heist-game-20261122-0559/miuoas47-gif/best-heist-game-20261122-0559/reward.svg)](https://make.fun/bounty/best-heist-game-20261122-0559?utm_source=github&utm_medium=readme&utm_campaign=best-heist-game-20261122-0559)
 
-Vaultbreak — a top-down heist game: plan the approach, dodge patrolling guards and sweeping security cameras, crack the safe, grab the loot and reach the getaway van. Three levels, an alarm system, sneaking, and a deterministic verification run.
+**Velvet Vault** is a top-down heist game that runs in a desktop browser from static
+files — no network, no installs, no assets to download. You are the thief. Three jobs
+stand between you and retirement: the Gallery, the Vault Floor, and the Rooftop.
+
+Each job is a single room you have to cross. Guards patrol with visible vision cones
+and give chase when they spot you; security cameras sweep the floor; every second
+spent in a cone pushes the alarm meter up, and at 100% the heist is busted. Grab every
+piece of loot, find the keycard, hold **E** to crack the safe, then reach the glowing
+getaway exit before the alarm catches you. Walk is quiet, **Shift** runs fast and loud,
+**C** sneaks slow and silent — and a mouse click walks you where you point.
+
+- **3 levels** with distinct themes: an art gallery (paintings), a bank vault floor
+  (gold bars), a night rooftop (diamonds under searchlights)
+- **Guards** with patrol routes, vision cones, alert meters, investigation and chase
+- **Rotating security cameras** with sweeping vision cones
+- **Alarm meter** that rises while you are seen and drains while you hide
+- **Keycard-gated safe** to crack (hold-to-interact) plus a loot quota that unlocks
+  the glowing getaway exit
+- **Scoring** with a time bonus and an alarm penalty, 3 attempts per level
+- **Synthesized WebAudio sound** — loot blips, safe-cracking ticks, a siren that
+  swells with the alarm, a getaway arpeggio (M mutes)
+- Title, pause, busted, level-complete, heist-complete and game-over screens
 
 ## Run it
 
 ```sh
-node main.ts
-# then open game/index.html in a desktop browser
+node serve.ts
+# open http://localhost:8080
 ```
 
-`node main.ts` runs a deterministic verification pass (no arguments, exits 0): it proves every level is beatable with a breadth-first search, plans a loot route for each level, and writes `heist-report.json` plus copies of the screenshots into the output directory (`MAKEFUN_OUTPUT_DIR`, or `./out` by default). Two runs produce byte-identical output.
+Or open `game/index.html` directly from any static file server. `main.ts` (Node 22+)
+stages the entry for the make.fun grader:
 
-## How to play
+```sh
+mkdir -p out && MAKEFUN_OUTPUT_DIR=out node main.ts
+```
 
-- **WASD / Arrow keys** — move
-- **Shift** — sneak (slower, harder to spot, silent)
-- **E (hold)** — crack the safe
-- **P** — pause · **M** — mute
+## Controls
 
-Guards patrol fixed routes and chase you once they are sure they saw you. Cameras sweep back and forth and raise the alarm fast. Running makes noise guards can hear; sneaking keeps you a shadow. Grab every piece of loot — paintings, the diamond, the safe — then get to the glowing getaway pad. If the alarm hits 100%, the job is blown.
-
-## The three jobs
-
-1. **The Gallery** — lift the paintings and the diamond past three guards and two cameras.
-2. **The Vault Floor** — the safe needs the manager's keycard. Find it first, then crack the safe.
-3. **The Rooftop** — four guards, three cameras, one last score, no mistakes.
-
-Score comes from loot value plus a time bonus against each level's par time, minus a penalty for the highest alarm you raised. Screenshots of the game running are in `screenshots/`.
+| Key | Action |
+| --- | --- |
+| WASD / arrows | Move |
+| Shift | Run (fast, loud — guards hear it) |
+| C | Sneak (slow, silent, half the alarm gain) |
+| E (hold) | Crack the safe (needs the keycard) |
+| Click | Walk to that spot |
+| P | Pause |
+| M | Mute |
+| Space / Enter | Start, continue, retry |
 
 ---
 
